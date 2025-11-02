@@ -8,11 +8,11 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <>
-      <Header />
-      <div className="flex justify-center items-center sm:hidden p-5 w-full h-[100vh]">
-          <p className="my-3 font-bold text-[#854854] text-lg">Ce site n&#39;est pas encore accessible en version mobile</p>
+      {/* Header temporairement caché jusqu'à création des pages */}
+      <div className="hidden">
+        <Header />
       </div>
-      <section className="sm:block hidden">
+      <section className="w-full">
         {children}
       </section>
     </>
