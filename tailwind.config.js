@@ -18,7 +18,15 @@ module.exports = withMT({
       fontFamily: {
         sans: ['var(--font-inter)'],
         mono: ['var(--font-roboto-mono)'],
-        mono: ['var(--font-oswald)']
+        display: ['var(--font-oswald)']
+      },
+      screens: {
+        'xs': '375px',
+        // sm: 640px (default Tailwind)
+        // md: 768px (default Tailwind)
+        // lg: 1024px (default Tailwind)
+        // xl: 1280px (default Tailwind)
+        // 2xl: 1536px (default Tailwind)
       },
       spaces: {
         

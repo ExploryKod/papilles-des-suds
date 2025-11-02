@@ -2,25 +2,97 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.custom-hero-bg {
-    background-position: 50%;
-    /* background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/146.webp'); */
-    /* background-image: url('https://images.pexels.com/photos/13195474/pexels-photo-13195474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); */
-    background-image: url('https://images.pexels.com/photos/206665/pexels-photo-206665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-    height: 500px;
+:root {
+    /* Header temporairement caché : hauteur à 0px */
+    --header-height: 0px;
+    --header-height-mobile: 0px;
 }
 
-:root {
-    --header-height: 8vh;
+.custom-hero-bg {
+    background-position: 50%;
+    background-size: cover;
+    background-image: url('https://images.pexels.com/photos/206665/pexels-photo-206665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    /* Mobile-first: height plus petite sur mobile */
+    height: 300px;
+}
+
+/* Tablette et plus */
+@media (min-width: 640px) {
+    .custom-hero-bg {
+        height: 400px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .custom-hero-bg {
+        height: 500px;
+    }
 }
 
 @layer components {
-
     .header-minh {
-      min-height: var(--header-height);
+        min-height: var(--header-height-mobile);
+    }
+
+    /* Tablette et plus */
+    @media (min-width: 640px) {
+        .header-minh {
+            min-height: var(--header-height);
+        }
     }
 
     .hero-section-minh {
-      min-height: calc(100vh - var(--header-height));
+        /* Le calcul reste pour plus tard : quand le header sera réactivé, changer juste les variables CSS */
+        min-height: calc(100vh - var(--header-height-mobile));
+    }
+
+    /* Tablette et plus */
+    @media (min-width: 640px) {
+        .hero-section-minh {
+            min-height: calc(100vh - var(--header-height));
+        }
+    }
+
+    /* Animations pour le menu mobile (utilisées via style inline) */
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
