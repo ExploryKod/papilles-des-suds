@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Header } from "@taotask/modules/app/react/Header";
+import { Footer } from "@taotask/modules/app/react/Footer";
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -15,6 +16,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
       <section className="w-full">
         {children}
       </section>
+      <Footer />
     </>
   );
 };

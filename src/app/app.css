@@ -6,6 +6,9 @@
     /* Header temporairement caché : hauteur à 0px */
     --header-height: 0px;
     --header-height-mobile: 0px;
+    /* Hauteur du footer - approximative, ajuster si nécessaire */
+    --footer-height: 120px;
+    --footer-height-mobile: 140px;
 }
 
 .custom-hero-bg {
@@ -44,6 +47,7 @@
 
     .hero-section-minh {
         /* Le calcul reste pour plus tard : quand le header sera réactivé, changer juste les variables CSS */
+        /* La hero section reste à 100vh, elle ne soustrait pas le footer */
         min-height: calc(100vh - var(--header-height-mobile));
     }
 
@@ -51,6 +55,18 @@
     @media (min-width: 640px) {
         .hero-section-minh {
             min-height: calc(100vh - var(--header-height));
+        }
+    }
+
+    .content-section-minh {
+        /* Sections de contenu : soustraire la hauteur du footer pour ne pas dépasser 100vh */
+        min-height: calc(100vh - var(--footer-height-mobile));
+    }
+
+    /* Tablette et plus */
+    @media (min-width: 640px) {
+        .content-section-minh {
+            min-height: calc(100vh - var(--footer-height));
         }
     }
 

@@ -27,7 +27,7 @@ export const OrderPage: React.FC = () => {
 
       {!presenter.isGuestSectionVisible ||
       (<>
-      <div className="pt-5 px-4 sm:px-6 lg:px-8 w-full min-h-[100vh] bg-gradient-to-r from-amber-200 to-yellow-500 flex flex-col gap-6 sm:gap-8 lg:gap-10">
+      <div className="pt-5 pb-2 px-4 sm:px-6 lg:px-8 w-full content-section-minh bg-gradient-to-r from-amber-200 to-yellow-500 flex flex-col gap-6 sm:gap-8 lg:gap-10">
         <RestaurantSection restaurantList={presenter.restaurantList} selectRestaurant={presenter.selectRestaurant}/>
 
         {!(presenter.restaurantList.restaurantId && step === OrderingDomainModel.OrderingStep.GUESTS)
