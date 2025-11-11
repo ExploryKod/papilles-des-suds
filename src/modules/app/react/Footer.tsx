@@ -1,10 +1,46 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 
 export const Footer: React.FC = () => {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const updateFooterHeight = () => {
+      if (footerRef.current) {
+        const height = footerRef.current.offsetHeight;
+        // Mettre à jour les variables CSS pour mobile et desktop
+        document.documentElement.style.setProperty('--footer-height-mobile', `${height}px`);
+        document.documentElement.style.setProperty('--footer-height', `${height}px`);
+      }
+    };
+
+    // Calculer la hauteur au montage
+    updateFooterHeight();
+
+    // Recalculer lors du redimensionnement de la fenêtre
+    window.addEventListener('resize', updateFooterHeight);
+
+    // Observer les changements de taille du footer (si le contenu change)
+    const resizeObserver = new ResizeObserver(() => {
+      updateFooterHeight();
+    });
+
+    if (footerRef.current) {
+      resizeObserver.observe(footerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateFooterHeight);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <footer className="bg-neutral-800 text-neutral-200 py-6 px-4 sm:px-6 lg:px-8">
+    <footer 
+      ref={footerRef}
+      className="bg-neutral-800 text-neutral-200 py-6 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm">
           <Link 
